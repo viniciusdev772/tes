@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOI308</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .positivo {
+            color: green;
+        }
+
+        .negativo {
+            color: red;
+        }
+
+        .atividade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .descricao {
+            flex-grow: 1;
+            margin-right: 10px; /* Espaço entre descrição e valor */
+            word-wrap: break-word; /* Quebra a linha se necessário */
+        }
+
+        .valor {
+            text-align: right;
+            white-space: nowrap; /* Impede a quebra de linha */
+            margin-right: 10px;
+        }
+
+        .hora {
+            white-space: nowrap; /* Impede a quebra de linha */
+            color: gray; /* Cor mais clara para a hora */
+            margin-right: 10px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #3949AB;
+            border-bottom: 1px solid #dee2e6;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            color: #fff;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+
+        .navbar-title {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            margin-right: 20px;
+        }
+
+        .notification {
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
+            margin-left: auto;
+        }
+
+        .notification i.fas.fa-calendar-alt {
+            font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+        }
+
+        #atividades-lista {
+            margin-top: 70px; /* Margem superior para a lista de atividades */
+            list-style-type: none;
+        }
+
+        /* Estilo para o contêiner do seletor de data */
+        .date-picker-container {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        /* Esconder o campo de data */
+        #data {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Estilo do ícone de calendário */
+        .calendar-icon {
+            cursor: pointer;
+            font-size: 24px;
+            color: #3949AB;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <span class="menu-toggle" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </span>
+        <div class="navbar-title">
+            <span>Histórico de atividades</span>
+        </div>
+        <div class="notification">
+            <i class="fas fa-calendar-alt" onclick="abrirSeletorData()"></i>
+        </div>
+    </div>
+
+    <div class="date-picker-container">
+        <input type="date" id="data" onchange="carregarAtividades()">
+        <i class="fas fa-calendar-alt calendar-icon" onclick="abrirSeletorData()"></i>
+    </div>
+    <div class="spinner" id="spinner"></div>
+    <ul id="atividades-lista"></ul>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="main.js"></script>
+
+    <script>
+        function obterParametroUrl(uid) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(uid);
+        }
+
+        function formatarDataParaISO(data) {
+            const ano = data.substring(0, 4);
+            const mes = data.substring(4, 6);
+            const dia = data.substring(6, 8);
+            return `${ano}-${mes}-${dia}`;
+        }
+
+        function formatarHora(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+        }
+
+        function carregarAtividades() {
+            const uid = obterParametroUrl('uid');
+            const dataSelecionadaISO = document.getElementById('data').value;
+            const dataSelecionadaFirebase = dataSelecionadaISO.replaceAll('-', '');
+
+            const ref = db.ref(`users/${uid}/extract/${dataSelecionadaFirebase}`);
+
+            ref.once('value', snapshot => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    const listaAtividades = document.getElementById('atividades-lista');
+                    listaAtividades.innerHTML = '';
+
+                    for (let key in data) {
+                        const atividade = data[key];
+                        const li = document.createElement('li');
+                        li.classList.add('atividade-item');
+
+                        const descricao = document.createElement('div');
+                        descricao.textContent = atividade.description;
+                        descricao.classList.add('descricao');
+
+                        const valor = document.createElement('div');
+                        valor.textContent = `${formatCurrency(atividade.value || 0)}`;
+                        valor.classList.add(atividade.value >= 0 ? 'positivo' : 'negativo');
+                        valor.classList.add('valor');
+
+                        const hora = document.createElement('div');
+                        hora.textContent = formatarHora(atividade.date);
+                        hora.classList.add('hora');
+
+                        li.appendChild(hora);
+                        li.appendChild(descricao);
+                        li.appendChild(valor);
+                        listaAtividades.appendChild(li);
+                    }
+                } else {
+                    const listaAtividades = document.getElementById('atividades-lista');
+                    listaAtividades.innerHTML = '';
+                    const li = document.createElement('li');
+                    li.textContent = 'Nenhuma atividade encontrada para esta data.';
+                    listaAtividades.appendChild(li);
+                }
+            }, error => {
+                console.error('Erro ao carregar atividades:', error);
+            });
+        }
+
+        function inicializarDataAtual() {
+            const dataAtual = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Sao_Paulo' });
+            document.getElementById('data').value = dataAtual;
+        }
+
+        function abrirSeletorData() {
+            document.getElementById('data').click();
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        inicializarDataAtual();
+        carregarAtividades();
+    </script>
+</body>
+</html>

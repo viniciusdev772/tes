@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOI308</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="requests.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- Link para o FontAwesome para usar os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <span class="menu-toggle" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> <!-- Ícone de voltar do FontAwesome -->
+        </span>
+        <div class="navbar-title">
+            <span>Resgates solicitados</span>
+        </div>
+    </div>
+    
+    <div id="orientation-container">
+        <p id="orientation-text"></p>
+    </div>
+    
+    <div class="spinner" id="spinner"></div>
+    <div id="requests-list"></div>
+    <div id="toast-container">
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <!-- Scripts do Firebase e JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="main.js"></script>
+    <script src="requests.js"></script>
+</body>
+</html>

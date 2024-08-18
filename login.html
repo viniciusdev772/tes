@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOI308 - Sorteios de valores aleatórios</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4">
+        <h1>BLOI308</h1>
+        <p>Sorteios de valores aleatórios</p>
+    </header>
+
+    <section class="intro-section py-5 bg-light text-center">
+        <div class="container">
+            <h1>Bem-vindo ao BLOI308</h1>
+            <p class="lead">Participe de sorteios de valores aleatórios e tenha a chance de ganhar diversas vezes!</p>
+        </div>
+    </section>
+
+    <section class="features-section py-5 bg-light5 text-center">
+        <div class="container">
+            <h2>Funcionalidades</h2>
+            <div class="row">
+                <div class="col-md-4 feature">
+                    <i class="fas fa-gift feature-icon7"></i>
+                    <h3>Sorteios Gratuitos</h3>
+                    <p>Participe de sorteios sem pagar nada e ganhe dinheiro.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <i class="fas fa-dollar-sign feature-icon7"></i>
+                    <h3>Sorteios Pagos</h3>
+                    <p>Compre bilhetes para sorteios pagos e aumente suas chances de ganhar.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <i class="fas fa-users feature-icon7"></i>
+                    <h3>Indique e Ganhe</h3>
+                    <p>Convide amigos para participar e ganhe pontos para mais sorteios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+    <div class="container">
+        <h2>Estatísticas</h2>
+        <div class="row">
+            <div class="col-md-4 stat">
+                <h3 id="total-users">0</h3>
+                <p>Usuários cadastrados na plataforma</p>
+            </div>
+            <div class="col-md-4 stat">
+                <h3 id="total-draws">0</h3>
+                <p>Sorteios realizados até o momento</p>
+            </div>
+            <div class="col-md-4 stat">
+                <h3 id="total-prizes">R$0</h3>
+                <p>Premiado para os usuários</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section class="how-it-works-section py-5 bg-light2 text-center">
+        <div class="container">
+            <h2>Como Funciona</h2>
+            <p class="lead">Veja como é fácil participar dos nossos sorteios:</p>
+            <ol class="list-unstyled">
+                <li>1. Cadastre-se ou faça login na nossa plataforma.</li>
+                <li>2. Escolha o sorteio que deseja participar.</li>
+                <li>3. Compre bilhetes ou participe gratuitamente.</li>
+                <li>4. Aguarde o sorteio e torça para ser o vencedor!</li>
+            </ol>
+            <h3 id="total-users" onclick="scrollToLogin()">Quero participar</h3>
+        </div>
+    </section>
+
+    <section class="testimonials-section py-5 bg-custom2 text-center">
+        <div class="container">
+            <h2>Depoimentos de Usuários</h2>
+            <div class="row">
+                <div class="col-md-4 testimonial">
+                    <img src="https://lh3.googleusercontent.com/a/ACg8ocIwKEJFlPphxc4dZ3kmG7hlRiAxHMClmkU9OkiMCzaFxfzh=s96-c" alt="Maria S.">
+                    <p>"Ganhei meu primeiro prêmio na BLOI308! É realmente bem dinamico."</p>
+                    <p><strong>Roseane S.</strong></p>
+                </div>
+                <div class="col-md-4 testimonial">
+                    <img src="https://lh3.googleusercontent.com/a/ACg8ocLLhiN4nwfEq9F0hsJhZrOak4fctqIoEVB334yBe-745GI=s96-c" alt="João P.">
+                    <p>"A plataforma é ótima, sempre temos suporte quando precisamos pra sanar nossa dúvida e isso da credibilidade."</p>
+                    <p><strong>Aline B.</strong></p>
+                </div>
+                <div class="col-md-4 testimonial">
+                    <img src="https://lh3.googleusercontent.com/a/ACg8ocL8jlKSxKoDxI59ej0kKCfYmh7sCaJpJkMUKaimrO5jqRIa=s96-c" alt="Ana K.">
+                    <p>"Ótima plataforma para tentar a sorte. Já ganhei várias vezes."</p>
+                    <p><strong>Ana Sophia J.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-testimonials-section py-5 bg-custom text-center">
+        <div class="container">
+            <h2>Depoimentos da Equipe</h2>
+            <div class="row">
+                <div class="col-md-4 team-testimonial">
+                    <img src="https://i1.sndcdn.com/avatars-000489676359-mv7ua6-t240x240.jpg" alt="Equipe 1">
+                    <p>"Estamos comprometidos em oferecer a melhor experiência de sorteios online."</p>
+                    <p><strong>Jhonatas T. P. - COO</strong></p>
+                </div>
+                <div class="col-md-4 team-testimonial">
+                    <img src="https://lh3.googleusercontent.com/a/ACg8ocLxDZyBHG9Kg9m5-lNbDT4XP0tCrM8tKMTpK0XACZ92=s96-c" alt="Equipe 2">
+                    <p>"Trabalhamos constantemente para garantir a transparência e segurança dos nossos sorteios."</p>
+                    <p><strong>A. O. Bezerra - CEO</strong></p>
+                </div>
+                <div class="col-md-4 team-testimonial">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjeLxiSllf6wacP3Wc6HimBc2rUif3A3GsC4qe-wI35aR1LbCPbCU2ZL5A&s=10" alt="Equipe 3">
+                    <p>"Nossa missão é tornar os sorteios acessíveis e divertidos para todos."</p>
+                    <p><strong>Andresa S. N. - Marketing</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="login-link">
+            <button class="google-btn" onclick="scrollToLogin()">
+        <span class="btn-text">Entrar</span>
+  </button>
+  </div>
+    <section class="bgy d-flex align-items-center justify-content-center">
+        <div class="login-container text-center">
+            <img src="logo.png" alt="Logo do site" class="logo">
+            <div class="title">Entrar no BLOI308</div>
+           
+            <button class="google-btn" onclick="loginWithGoogle()">
+    <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="Google logo" class="google-icon">
+    <span class="btn-text">Login com Google</span>
+  </button>
+
+            <p class="terms">
+                Ao continuar, você concorda com nossos <a href="termos-de-uso.html" target="_blank">Termos de Serviço</a> e nossa <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a>.
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer footer-blue py-4 text-white text-center">
+        <div class="container">
+            <p>&copy; 2024 BLOI308. Todos os direitos reservados.</p>
+            <p><a href="termos-de-uso.html" target="_blank" class="text-white">Termos de Serviço</a> | <a href="politica-de-privacidade.html" target="_blank" class="text-white">Política de Privacidade</a> | <a href="contato.html" target="_blank" class="text-white">Contato</a></p>
+            <div class="social-icons">
+    <a href="https://www.facebook.com/profile.php?id=61562790487809" target="_blank" title="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.instagram.com/bloi308" target="_blank" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://x.com/bloi308" target="_blank" title="X (Twitter)">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </div>
+       </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="main.js"></script>
+    <script src="login.js"></script>
+
+</body>
+</html>

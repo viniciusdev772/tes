@@ -1,0 +1,114 @@
+/* Estilos para os cards dos participantes */
+.participant-card {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9; /* Cor de fundo mais clara */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: transform 0.2s ease-in-out; /* Transição para o hover */
+}
+
+/* Efeito de hover para os cards */
+.participant-card:hover {
+    transform: scale(1.02); /* Aumenta ligeiramente o card */
+}
+
+/* Estilos para a lista de solicitações */
+#requests-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Colunas flexíveis */
+    gap: 20px; /* Espaço entre os cards */
+    padding: 20px 20px 20px; /* Padding com espaçamento superior para evitar sobreposição da navbar */
+}
+
+.status-processing {
+    color: #3949AB;
+}
+
+.status-paid {
+    color: green;
+}
+
+.status-refunded {
+    color: red;
+}
+
+
+/* Estilos para o spinner */
+.spinner {
+    display: none;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #3949AB;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Estilos para a navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #3949AB;
+    border-bottom: 1px solid #dee2e6;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    color: #fff;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.navbar-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+
+
+
+
+
+#orientation-container {
+    margin-top: 70px; /* Ajuste conforme necessário para garantir que o conteúdo não fique atrás do tab-layout */
+}
+
+#orientation-text {
+    background-color: #3949;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.orient {
+    background-color: #3949;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-left: 10px;
+}

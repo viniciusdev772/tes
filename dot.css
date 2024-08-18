@@ -1,0 +1,48 @@
+.spinner-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+.spinner-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.dot-spinner {
+  display: flex;
+  align-items: center;
+}
+.dot-spinner div {
+  width: 10px;
+  height: 10px;
+  margin: 0 2px;
+  background-color: #000;
+  border-radius: 50%;
+  animation: dot-spinner 1.4s infinite ease-in-out both;
+}
+.dot-spinner div:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.dot-spinner div:nth-child(2) {
+  animation-delay: -0.16s;
+}
+.dot-spinner-primary div {
+  background-color: #3949ab;
+}
+.dot-spinner-secondary div {
+  background-color: #6c757d;
+}
+
+@keyframes dot-spinner {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,134 @@
+/* Impede a seleção de texto em todo o site */
+
+
+
+body {
+    font-family: 'Google Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    user-select: none;
+}
+
+/* Tema escuro */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: #333;
+    }
+}
+
+#toast-container {
+    position: fixed;
+    bottom: 60px; /* Distância do fundo da tela */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    z-index: 901;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    pointer-events: none; /* Permite clique através do container */
+}
+
+.toast {
+    visibility: hidden; /* Escondido por padrão */
+    min-width: 250px; /* Largura mínima */
+    color: #fff; /* Cor do texto */
+    text-align: center; /* Alinhamento do texto */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px; /* Espaçamento interno */
+    font-size: 17px; /* Tamanho da fonte */
+    pointer-events: all; /* Permite clique no toast */
+}
+
+.toast.show {
+    visibility: visible; /* Mostra o toast quando a classe show é adicionada */
+}
+
+.toast.error {
+    background-color: red; /* Cor de fundo para mensagens de erro */
+}
+
+.toast.success {
+    background-color: green; /* Cor de fundo para mensagens de sucesso */
+}
+
+.toast.info {
+    background-color: #3949AB; /* Cor de fundo para outras mensagens */
+}
+
+
+.toast.show {
+    visibility: visible; /* Torna o toast visível */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s; /* Animação de fade in e fade out */
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {opacity: 1;} 
+    to {opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+
+
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+}
+
+#progressDialog {
+    background: #fff;
+    color: #3949AB;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.progressCircle {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ccc;
+    border-top: 4px solid #3949AB;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-top: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}

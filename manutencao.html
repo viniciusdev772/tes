@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloi308</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .message {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Servidor Offline</div>
+        <div class="message">Desculpe, parece que estamos sem conexão com o servidor no momento.</div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+
+    <script>
+        // Colocar o código que usa Firebase dentro de uma função
+        function checkServerTimestamp() {
+            let serverTimestamp; // Variable to store the server timestamp
+
+            firebase.database().ref('settings/server').on('value', (snapshot) => {
+                serverTimestamp = snapshot.val();
+                
+                const currentTime = Date.now();
+                const differenceInSeconds = currentTime - serverTimestamp;
+                const differenceInMinutes = differenceInSeconds / (1000 * 60);
+
+                if (differenceInMinutes < 1) {
+                    console.log('Server on, Redirecting to sorteios.html.');
+                    window.history.back();
+                }
+            });
+        }
+
+        // Chamar a função após um pequeno atraso para garantir que as bibliotecas do Firebase sejam carregadas
+        window.onload = function() {
+            setTimeout(checkServerTimestamp, 1000); // 1 segundo de atraso
+        };
+    </script>
+</body>
+</html>

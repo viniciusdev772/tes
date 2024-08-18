@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOI308</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="sorteios.css?v=8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="modal.css?v=3">
+    <link rel="stylesheet" href="chat.css?v=3">
+    <link rel="stylesheet" href="create-sweepstake.css?v=4">
+</head>
+<body>
+    <div class="navbar">
+        <span class="menu-toggle" onclick="toggleDrawer()">☰</span>
+        <div class="navbar-title">
+            <span>BLOI308</span>
+            <br>
+            <span class="balancee">R$0,00</span>
+        </div>
+        <div class="notification">
+            <i class="fas fa-bell" id="notificationIcon" onclick="toggleNotificationsPopup()"></i>
+            <span class="badge" id="notificationBadge">0</span>
+        </div>
+        <div id="notificationsPopup" class="popup">
+            <div class="popup-header">
+                <span class="popup-title">Notificações</span>
+                <span class="close-button" onclick="closeNotificationsPopup()">&times;</span>
+            </div>
+            <ul id="notificationsList"></ul>
+        </div>
+    </div>
+    <div id="drawer" class="drawer">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleDrawer()">&times;</a>
+        <div class="profile">
+            <img src="profile.jpg" alt="Profile Picture">
+            <p class="name"></p>
+            <p class="email"></p>
+            <p class="uid"></p>
+            <p class="balance"></p>
+            <p class="points"></p>
+        </div>
+        <div class="aba" onclick="toggleSweepstakes()">Sorteios <span id="sweepstake-arrow">▼</span></div>
+        <div id="sweepstake-options" class="sweepstake-options">
+            <div class="option" onclick="viewDraw('sweepstakes0')">Sorteios gratuitos</div>
+            <div class="option" onclick="viewDraw('sweepstakes')">Sorteios pagos</div>
+            <div class="option" onclick="viewDraw('sweepstakes4')">Sorteios por indicação</div>
+            <div class="option" onclick="viewDraw('sweepstakes3')">Sorteios com código</div>
+            <div class="option" onclick="viewDraw('sweepstakes5')">Sorteios da comunidade</div>
+            <div class="option" onclick="viewDraw('sweepstakes6')">Sorteios de moedinhas</div>
+            <div class="option" onclick="viewDraw('sweepstakes7')">Sorteios da MegaBloi</div>
+            <div class="option" onclick="viewDraw('sweepstakes2')">Sorteios concluídos</div>
+        </div>
+        <div class="aba" onclick="handleDeposit()">Depositar</div>
+        <div class="aba" onclick="handleRequest()">Resgatar</div>
+        <div class="aba" onclick="createSweepstake()">Criar novo sorteio</div>
+        <div class="aba" onclick="extract()">Histórico de atividades</div>
+        <div class="aba" onclick="viewWithdrawals()">Solicitações de resgate</div>
+        <div class="aba" onclick="showIndicate()">Indique e Ganhe</div>
+        <div class="aba" onclick="openChat()">Fale conosco</div>
+        <div class="aba" onclick="breve()">Perguntas frequentes</div>
+    </div>
+    <div class="tab-layout">
+        <ul>
+            <li><a href="#" onclick="handleLinkClick('sweepstakes0')">Gratuitos</a></li>
+            <li><a href="#" onclick="handleLinkClick('sweepstakes')">Pagos</a></li>
+            <li><a href="#" onclick="handleLinkClick('sweepstakes4')">Indicação</a></li>
+            <li><a href="#" onclick="handleLinkClick('sweepstakes3')">Código</a></li>
+            <li><a href="#" onclick="handleLinkClick('sweepstakes5')">Comunidade</a></li>
+            <li><a href="#" onclick="handleLinkClick('sweepstakes6')">Moedinhas</a></li>
+            <li><a href="#" onclick="handleLinkClick('sweepstakes7')">MegaBloi</a></li>
+            <li><a href="#" onclick="handleLinkClick('sweepstakes2')">Concluídos</a></li>
+        </ul>
+    </div>
+    
+    <div class="winners-container">
+        <div class="winners-marquee">
+            <!-- Os ganhadores serão adicionados aqui dinamicamente -->
+        </div>
+    </div>
+    
+    <div id="orientation-container">
+        <p id="orientation-text"></p>
+    </div>
+    <div id="main-container">
+        <div id="sweepstakes-list"></div>
+        <div id="toast-container">
+            <div id="toast" class="toast"></div>
+        </div>
+    </div>
+    <div id="deposit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Depositar</h2>
+            <p>Recarregue para participar dos sorteios pagos</p>
+            <div class="amount-options">
+                <button class="amount-button" onclick="selectAmount(5)">R$5</button>
+                <button class="amount-button" onclick="selectAmount(10)">R$10</button>
+                <button class="amount-button" onclick="selectAmount(20)">R$20</button>
+                <button class="amount-button" onclick="selectAmount(50)">R$50</button>
+                <button class="amount-button" onclick="selectAmount(100)">R$100</button>
+            </div>
+            <button class="recharge-button" onclick="recharge()">Recarregar</button>
+            <p class="det">Taxa de serviço de R$0,99</p>
+        </div>
+    </div>
+    <div id="request-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal2()">&times;</span>
+            <h2>Resgatar</h2>
+            <p>Transfira seu saldo para sua conta bancaria</p>
+            <div class="amount-options">
+                <button class="amount-button" onclick="selectAmount(5)">R$5</button>
+                <button class="amount-button" onclick="selectAmount(10)">R$10</button>
+                <button class="amount-button" onclick="selectAmount(20)">R$20</button>
+                <button class="amount-button" onclick="selectAmount(50)">R$50</button>
+                <button class="amount-button" onclick="selectAmount(100)">R$100</button>
+            </div>
+            <div class="pix-selection">
+                <label for="pix-type">Tipo de Chave PIX:</label>
+                <select id="pix-type" onchange="updatePixInput()">
+                    <option value="CPF">CPF</option>
+                    <option value="CNPJ">CNPJ</option>
+                    <option value="PHONE">Celular</option>
+                    <option value="EMAIL">E-mail</option>
+                    <option value="EVP">Chave Aleatória</option>
+                </select>
+            </div>
+            <div class="pix-input">
+                <label for="pix-key">Chave PIX:</label>
+                <input type="text" id="pix-key" placeholder="Digite a chave PIX">
+            </div>
+            <button class="recharge-button" onclick="requests()">Resgatar</button>
+            <p class="det">Taxa de serviço de R$0,99</p>
+        </div>
+    </div>
+    <div class="dialog-overlay" id="payment-dialog">
+        <div class="dialog">
+            <h2>Pagamento</h2>
+            <div class="loading" id="loading-indicator">
+                <p>Processando... Por favor, aguarde.</p>
+            </div>
+            <div class="codepix" id="codepix"></div>
+            <!-- Aqui será exibido o QR Code -->
+            <img src="" alt="QR Code" id="qrcode" class="qrcode-img">
+            <button class="copy-button" id="copy-button" onclick="copyCodePix()">Copiar Código Pix</button>
+            <button class="cancel-button" id="cancel-button" onclick="cancelPix()">Cancelar</button>
+        </div>
+    </div>
+    <div id="chat-modal" class="chat-modal">
+        <div class="chat-container" id="chatContainer" style="display: none;">
+            <div class="chat-header">
+                <h2>Fale conosco</h2>
+                <p>Assim que possivel iremos te atender</p>
+                <button class="close-button" id="closeButton">&times;</button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+                <button2 id="sendButton">Enviar</button2>
+            </div>
+        </div>
+    </div>
+    <div id="diallog" class="diallog">
+        <div class="diallog-header">Criar Novo Sorteio</div>
+        <div class="diallog-body">
+            <p class="orient">Crie seus próprios concursos e aumente seus ganhos.</br>Divulgue para seus amigos para acelerar o sorteio e ganhar mais rápido sua recompensa.</br>Sua recompensa será creditada na sua conta quando completar a quantidade mínima de participantes no seu concurso.</p>
+            <label for="prizeValue">Valor do Prêmio (R$):</label>
+            <input type="number" id="prizeValue" required>
+            <br><br>
+            <label for="numParticipants">Quantidade de Pessoas:</label>
+            <input type="number" id="numParticipants" required>
+            <br><br>
+            <label for="ticketValue">Valor do Ingresso (R$):</label>
+            <input type="number" id="ticketValue" readonly>
+            <div class="investment-info">
+                <div id="investmentText" class="investment"></div>
+                <div id="potentialEarningsText" class="potential-earnings"></div>
+            </div>
+        </div>
+        <div class="diallog-footer">
+            <button id="cancelButton">Cancelar</button>
+            <button id="createButton">Criar</button>
+        </div>
+    </div>
+    <div id="customNotificationModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="custom-close-button">&times;</span>
+            <h2 id="customNotificationTitle"></h2>
+            <div id="customNotificationText"></div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js" defer></script>
+    <script src="firebase-config.js" defer></script>
+    <script src="main.js?v=5" defer></script>
+    <script src="sorteios.js?v=10" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+
+
+
+</body>
+</html>

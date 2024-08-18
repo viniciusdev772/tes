@@ -1,0 +1,526 @@
+.drawer {
+    height: 98%;
+    width: 0;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tema escuro */
+@media (prefers-color-scheme: dark) {
+    .drawer {
+        background-color: black;
+    }
+}
+
+.drawer a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #333;
+    display: block;
+    transition: 0.3s;
+}
+
+.drawer .closebtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 36px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.profile p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.profile .uid {
+    font-size: 14px;
+    color: #999;
+}
+
+.det {
+    font-size: 10px;
+    color: #000;
+}
+
+.profile .balance {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #3949AB;
+}
+
+.profile .points {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.profile .actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #3949AB;
+    color: white;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3949AB;
+}
+
+.aba {
+    padding: 15px 20px;
+    color: #616161;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.sweepstake-options {
+    display: none;
+    margin-left: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.sweepstake-options .option {
+    padding: 8px 0;
+}
+
+.abaa {
+    padding: 15px 20px;
+    color: #fff;
+    background-color: #3949AB;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#orientation-container {
+    margin-top: 140px; /* Ajuste conforme necessário para garantir que o conteúdo não fique atrás do tab-layout */
+}
+
+#orientation-text {
+    background-color: #3949;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.orient {
+    background-color: #3949;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#main-container {
+    padding: 10px;
+}
+
+#sweepstakes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); /* Colunas flexíveis */
+    gap: 10px;
+}
+
+.sweepstake-item {
+    padding-top: 20px; /* Adicione espaço para a data */
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin: 1px;
+    position: relative;
+    overflow: hidden; /* Garantir que o conteúdo não ultrapasse os limites do contêiner */
+    font-size: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.sweepstake-date {
+    background-color: #3949AB; /* Fundo azul */
+    color: #ffffff; /* Texto branco */
+    padding: 10px;
+    border-radius: 8px 8px 0 0; /* Cantos arredondados no topo */
+    position: absolute;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.sweepstake-others {
+    padding: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #3949AB;
+    border-bottom: 1px solid #dee2e6;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    color: #fff;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.navbar-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.balancee {
+    font-size: 16px;
+    color: #f0f0f0;
+}
+
+.notification {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    margin-left: auto;
+}
+
+.fas.fa-bell {
+    font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -4px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+
+
+
+.participating {
+    background-color: #e8eaf6;
+    border: 1px solid #c3e6cb;
+}
+
+.prize-green {
+    color: #4CAF50; /* Cor verde para o prêmio */
+}
+
+.ticket-red {
+    color: #F44336; /* Cor vermelha para o ingresso */
+}
+
+.winner-blue {
+    color: blue; /* Cor azul para mostrar o ganhador*/
+}
+
+.sweepstake-green {
+    background-color: #e8f5e9; /* Fundo verde claro */
+}
+
+.participants-container {
+    background-color: #ffffff; /* Fundo branco */
+    border-radius: 8px; /* Bordas arredondadas */
+    border: 1px solid #616161;
+    padding: 5px 10px; /* Espaçamento interno */
+}
+
+.btn-participate {
+    background-color: #4CAF50; /* Fundo verde */
+    color: black; /* Texto branco */
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-participate:hover {
+    background-color: #45a049; /* Fundo verde mais escuro ao passar o mouse */
+}
+
+.btn-view {
+    background-color: #e0e0e0; /* Fundo cinza */
+    color: #333; /* Texto escuro */
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-view:hover {
+    background-color: #d5d5d5; /* Fundo cinza mais escuro ao passar o mouse */
+}
+
+.creator-text {
+    color: #9C27B0; /* Cor roxa */
+    font-size: 1em; /* Tamanho de fonte menor */
+    margin-bottom: 5px; /* Espaçamento inferior */
+}
+
+.tab-layout {
+    display: flex; /* Define o layout flexível */
+    align-items: center; /* Centraliza verticalmente os itens */
+    background-color: #3949AB; /* Cor de fundo do tab layout */
+    color: #fff; /* Cor do texto dos itens do tab layout */
+    padding: 10px; /* Espaçamento interno do tab layout */
+    width: 100%; /* Largura total do container */
+    overflow-x: auto; /* Permite rolagem horizontal se necessário */
+    position: fixed; /* Fixa o tab layout na tela */
+    top: 50px; /* Ajustado para estar abaixo da navbar */
+    z-index: 999; /* Define a prioridade de sobreposição */
+    height: 30px; /* Altura fixa para garantir que seja visível */
+    margin-top: 35px; /* Espaçamento superior */
+    padding-bottom: 0px;
+}
+
+.tab-layout ul {
+    display: flex; /* Define o layout flexível */
+    justify-content: center; /* Centraliza horizontalmente os itens */
+    align-items: center; /* Centraliza verticalmente os itens */
+    padding: 0; /* Remove o padding padrão */
+    margin: 0; /* Remove a margem padrão */
+    list-style: none; /* Remove os marcadores de lista */
+    height: 100%; /* Garantir que os itens preencham a altura do tab-layout */
+}
+
+.tab-layout li {
+    margin: 0 10px; /* Define margem lateral */
+}
+
+.tab-layout a {
+    text-decoration: none; /* Remove a decoração de texto */
+    color: #fff; /* Define a cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+    padding: 10px; /* Espaçamento interno do link */
+    transition: 0.3s; /* Define a transição suave */
+    display: flex; /* Define o layout flexível */
+    align-items: center; /* Centraliza verticalmente os itens */
+    height: 100%; /* Garantir que os links preencham a altura do tab-layout */
+    border-radius: 8px 8px 0 0;
+}
+
+
+
+
+
+
+#navbar {
+    position: relative;
+    padding: 10px;
+}
+
+#notificationIcon {
+    cursor: pointer;
+    position: relative;
+}
+
+#notificationBadge {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: none; /* Initially hidden */
+}
+
+.popup {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 100%; /* Ajuste a posição para logo abaixo do navbar */
+    right: 3%;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.popup ul {
+    list-style: none;
+    padding: 0;
+    max-height: 200px; /* Limit height and allow scrolling */
+    overflow-y: auto;
+}
+
+.popup li {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    background-color: #3949AB;
+}
+
+.popup-title {
+    font-weight: bold;
+    color: #fff;
+}
+
+.close-button {
+    cursor: pointer;
+    color: #fff;
+}
+
+.notification-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    border-radius: 50%;
+    margin-left: 5px;
+    float: right; /* Alinha o ponto à direita */
+    margin-top: 4px; /* Ajusta o alinhamento vertical */
+}
+
+
+
+
+
+
+
+/* Estilos para o diálogo modal */
+.custom-modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Fundo escuro */
+}
+
+.custom-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.custom-close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.custom-close-button:hover,
+.custom-close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+        .winners-container {
+            position: fixed;
+            bottom: 10px;
+            width: 100%; /* Largura do contêiner */
+            overflow: hidden; /* Oculta o conteúdo que está fora da área visível */
+            background-color: #3949AB; /* Cor de fundo */
+            border: 1px solid #fff; /* Borda ao redor do contêiner */
+            padding: 10px 0; /* Espaçamento interno do contêiner */
+            box-sizing: border-box;
+            z-index: 900;
+        }
+
+.winners-marquee {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .winner {
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 18px;
+            color: #fff;
+        }

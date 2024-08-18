@@ -1,0 +1,25 @@
+versão 53
+alterado design na criação de sorteio
+adicionado ver qr code do pix
+adicionado suporte global de copiar qr code do pix
+
+versao 52
+tipo do codigo pix ajustado
+
+versao 53
+rolagem inferior com avisos
+
+versao 54
+texto de orientacao para a tela de saque
+MegaBloi
+
+versao 55
+nao permitir selecionar texto no site
+retirado o toast de tras do carrossel
+criacao de sorteios de volta
+
+versao 56
+sorteio concluidos nao mostra mais os outros participantes alem do ganhador
+
+versao 57
+texto de orientacao da aba codigo modificado.
